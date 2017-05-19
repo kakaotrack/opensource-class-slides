@@ -1,0 +1,716 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Agile Estimating & Planning</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section data-markdown>
+						# Agile
+						## Estimating & Planning
+					</section>
+					<section data-markdown>
+						![](images/benedict.jpg)
+
+						- 카카오 > 플랫폼기술팀
+						- Benedict, 베네딕트, 이호정
+					</section>
+					<section data-markdown>
+						![](images/book.jpg)
+
+						- Mike Cohn, 2005
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						# practice <!-- .element: class="fragment highlight-red" data-fragment-index="1" -->
+						# Perspective <!-- .element: class="fragment " data-fragment-index="2" -->
+						</script>
+					</section>
+				</section>
+
+
+				<!-- 개요 start -->
+				<section data-markdown>
+					# 계획, 추정, 애자일
+					overview
+				</section>
+				<section>
+					<section data-markdown>
+						### 계획(plan)
+
+						- 앞으로 해야 할 일을 미리 정해놓은 내용
+						- 미래에 대한 현재의 결정
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 왕봥가져갑서 프로젝트 계획 #1
+						- 기능 A는 언제부터 언제까지 완료한다.
+						- 기능 B는 언제부터 언제까지 완료한다.
+					</section>
+					<section data-markdown>
+						### 계획하기 (planning)
+
+						- 계획을 만드는 행위
+					</section>
+					<section data-markdown>
+						> "Plans are nothing, planning is everything."
+						> \- Dwight D. Eisenhower
+					</section>
+					<section data-background-image="images/travel.jpg">
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+						### 추정 (estimation)
+
+						- 推定 : 미루어 생각하여 결정함
+						- 정확한 결과를 예측하는 것이 아니라 <!-- .element: class="fragment" style="color:red" data-fragment-index="1" -->
+						- 변화와 불확실성이 존재하는 상황에서의 추측 <!-- .element: class="fragment" data-fragment-index="2" -->
+						- 계획을 위한 정보를 제공<!-- .element: class="fragment" data-fragment-index="3" -->
+						</script>
+					</section>
+					<section data-markdown>
+						> 소프트웨어 추정의 주된 목적은 프로젝트의 결과를 예측하는 것이 아니다.
+
+						> 프로젝트의 목표가 통제가능할 만큼 충분히 현실적인지 알아보기 위한 것이다.
+
+						> \- Steve McConnell, Software Estimation
+					</section>
+					<section data-markdown style="background-color: orange">
+						<script type="text/template">
+						#### 왕봥가져갑서 프로젝트 계획 #1
+						- 기능 A는 **언제부터 언제까지**<!-- .element: class="fragment highlight-red" data-fragment-index="1" --> 완료한다.
+						- 기능 B는 **언제부터 언제까지**<!-- .element: class="fragment highlight-red" data-fragment-index="1" --> 완료한다.
+						</script>
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 왕봥가져갑서 프로젝트 추정 #1
+
+						- 기능 A는 **3일 정도** 걸릴 것 같습니다.
+						- 기능 B는 **5일 정도** 걸릴 것 같습니다.
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						### 추정
+						계획하기(planning)과정에서 반드시 필요한 활동
+
+						- 하지만, 매번 해도 어렵고 <!-- .element: class="fragment" data-fragment-index="1" -->
+						- 시간도 오래 걸리고 <!-- .element: class="fragment" data-fragment-index="2" -->
+						- 매번 추정치와 실제 작업은 일치하지 않는다.<!-- .element: class="fragment" data-fragment-index="3" -->
+						</script>
+					</section>
+					<section  data-background-image="images/이러려고.png">
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						### 애자일 (agile)
+					</section>
+					<section data-markdown data-background-image="images/agile_background.jpg" style="color: black">
+						<script type="text/template">
+						애자일 개발 선언문
+
+						> - 공정과 도구보다 **개인과 상호작용**을
+						> - 포괄적인 문서보다 **작동하는 소프트웨어**를
+						> - 계약 협상보다 **고객과의 협력**을
+						> - 계획을 따르기보다 **변화에 대응**하기를<!-- .element: class="fragment highlight-red" data-fragment-index="1" -->
+
+						Note:
+						애자일은 변화에 대응하는것이 핵심
+						- 원래의 요구가 의도된대로 구현되었는지(뼌화하지 않았는지)
+						- 원래의 요구를 다른 방향으로 변화시켜야할지
+						- 원래의 일정을 변화시켜야 할지
+						</script>
+					</section>
+					<section data-markdown>
+						> "애자일(agile)이란, **변화**와 **불확실성**으로부터 우리를 지켜주는 **보호막**이다."
+
+						> \- Benedict
+
+						> (우리 = Product, Team, Stakeholders)
+
+						Note:
+						켄트백 xp, 에고리스 프르그래밍
+						모든것은 변한다. 변하지 않는 유일한 사실은 변화 그차제이다.
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						## [Agile Estimating & Planning](#/5)
+
+						변화와 불확실성으로부터
+
+						현실적이고 실현가능한 계획을 만들어 나가는 과정
+					</section>
+				</section>
+				<!-- 개요 end -->
+
+
+				<!-- 계획 -->
+				<section>
+					<section data-markdown>
+						# 프로젝트 계획
+					</section>
+
+				</section>
+
+				<section>
+					<section data-markdown>
+						## 왜 하나요?
+						## 무엇을 위해 하나요?
+
+						Note:
+						청중질문
+						위에서 하라고 하니까
+						일정 잡으려고
+					</section>
+					<section data-markdown>
+						## 무엇을 추정하고 계획하나요?
+					</section>
+					<section data-markdown>
+						- Who
+						- When
+						- Where
+						- What
+						- How
+						- Why
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						- Resource(자원)
+						  - Who
+						- Schedule(일정)
+						  - When
+						- Feature(기능)
+						  - What
+						  - How
+						  - Why
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						주어진 일정(Schedule)과
+
+						주어진 자원(Resource)으로
+
+						주어진 기능(Feature)을 완성하기 위해
+
+						## 전통적 계획법 <!-- .element: class="fragment" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown data-background-image="images/wbs.jpg">
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+					<script type="text/template">
+						## 전통적인 계획법은 왜 실패하기 쉬운가?
+
+						- 불확실성을 무시한다.<!-- .element: class="fragment" data-fragment-index="1" -->
+						- 기능과 활동이 분리되어 있지 않다.<!-- .element: class="fragment" data-fragment-index="2" -->
+						- 우선순위에 따른 기능 개발이 이루어지지 않는다.<!-- .element: class="fragment" data-fragment-index="3" -->
+						- 추정치가 서약으로 변한다.<!-- .element: class="fragment" data-fragment-index="4" -->
+						- 멀티태스킹<!-- .element: class="fragment" data-fragment-index="5" -->
+					</script>
+					</section>
+
+					<section data-markdown>
+						프로젝트 초기의 계획에 모든 기능 요구사항, 디자인, UI 등이 완벽하고 프로젝트 진행중 절대 변화가 없을것이라고 생각한다.
+					</section>
+					<section data-markdown style="background-color: white;">
+						![](images/cone-of-uncertainty.png)
+					</section>
+
+					<!--<section data-markdown>-->
+					<!--### 활동(activity) vs 기능(feature)-->
+
+					<!-- - 활동이 일정보다 일찍 끝나지 않는다.(파킨슨 법칙)-->
+					<!-- - 어떤 활동이 지연되면 그 결과는 일정 전반에 영향을 미친다.-->
+					<!-- - 각각의 활동은 서로 독립적이지 않다.-->
+					<!--</section>-->
+					<!--<section data-markdown>-->
+					<!--### 멀티 태스킹-->
+
+					<!--![WIP - Throughput](images/wip_th.png)-->
+
+					<!--스크럼은 sprint로 제한하고, 칸반은 WIP limit로 제한한다.-->
+					<!--</section>-->
+					<!--<section data-markdown>-->
+					<!--### 우선순위에 따른 기능 개발이 이루어지지 않는다.-->
+					<!--</section>-->
+
+					<!--<section data-markdown>-->
+					<!--### 추정치가 서약으로 변한다.-->
+
+					<!--&gt; 소프트웨어 추정의 주된 목적은 프로젝트의 결과를 예측하는 것이 아니다.-->
+					<!--&gt; 프로젝트의 목표가 통제가능할 만큼 충분히 현실적인지 알아보기 위한 것이다.-->
+
+					<!--&gt; \- Steve McConnell, Software Estimation-->
+					<!--</section>-->
+				</section>
+
+
+				<section>
+					<section data-markdown>
+						## 애자일 계획법
+					</section>
+					<section data-markdown>
+						### 왜? 무엇을 위해 하나요?
+					</section>
+					<section data-markdown>
+						일정(Schedule), 자원(Resource), 기능(Feature)
+
+						세 가지 요소를 고려하여
+
+						사용자에게 최대한의 **가치(Value)**를 제공하기 위한
+
+						최적의 해답을 찾기 위해
+
+						Note:
+						전통적 계획법은 주어진 자원과 일정으로 기능을 완료하기 위해해
+					</section>
+					<section data-markdown>
+						프로젝트 초반에 완벽한 해답을 찾는것은 불가능
+
+						반복적으로(Iterative) 답을 내놓고,
+
+						점진적으로(Incremental) 개선
+
+						![](images/planning-onion.jpg)
+					</section>
+					<section data-markdown>
+						### 계획 과정을 애자일하게
+
+						- 계획 자체보다 계획 과정에 집중할 것
+						- 변화를 장려할 것
+						- 변경이 쉬운 계획을 만들어 낼 것
+						- 프로젝트 전 과정에 걸쳐 균등하고 지속적으로 적용될 것
+					</section>
+				</section>
+
+				<!--<section data-markdown>-->
+					<!--# Break-->
+					<!--## 10분-->
+				<!--</section>-->
+
+
+				<section data-markdown>
+					# 추정
+				</section>
+				<section>
+					<section data-markdown style="background-color: orange">
+						#### 왕봥가져갑서 프로젝트 추정의 함정
+
+						- 기능 A는 3일정도 걸릴 것 같습니다.
+						- 기능 B는 5일정도 걸릴 것 같습니다.
+					</section>
+					<section data-markdown>
+						## 규모 추정과 기간 산정
+
+						규모 추정과 기간 산정은 분리해야 한다.
+					</section>
+					<section data-markdown data-background-image="images/soil.jpg" >
+						<script type="text/template">
+						```
+						- 규모 추정 : 10 입방미터
+						- 기간 산정 : 2시간
+						  - 3명, 삽 3개, 수레 1대
+						  - 수레 한번에 1 입방미터, 12분 소요
+						  - 수레 10번 이동 필요 12 x 10
+						```
+						<!-- .element: class="fragment" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown>
+						**규모를 추청하여 프로젝트 소요 기간을 산정하는 과정**
+
+						필요한 기능들 > 규모 추정 > 기간 산정 > 일정
+
+						Note:
+						규모로부터 기간을 산정하기 위해서는 속도라는 개념이 필요하다.
+					</section>
+				</section>
+				<section data-markdown>
+					## 규모 추정 단위
+
+					- 스토리 포인트
+					- 이상적인 작업일
+				</section>
+				<section>
+					<section data-markdown>
+						## 스토리 포인트를 이용한 규모 추정
+					</section>
+					<section data-markdown>
+						### 스토리 포인트
+
+						사용자 스토리나 기능 또는 어떤 작업의 전체 규모를 표현하기 위해 사용하는 단위
+					</section>
+					<section data-markdown>
+						### 스토리 포인트는 상대적이다.
+
+						- 완료하는데 드는 노력의 양과 복잡도 그리고 내재된 위험성 등등을 한데 모아 표한하는 값
+						- 계산하는 공식은 없다.
+						- 중요한 것은 어떤 값을 할당했는지가 아니라 그 값의 상대성이다.
+
+						Note:
+						카카오 계정로그인의 포인트는 1일수도 10일수도 있다.
+						비슷한 규모라면 페북 로그인은 카카오계정로그인과 비슷해야 한다.
+					</section>
+					<section data-markdown >
+						![](images/earth.jpg)
+					</section>
+					<section data-markdown>
+						### 속도
+
+						명확한 단위 개념이 없는 스토리 포인트를 활용하기 위해서는 속도(Velocity)라는 개념도입이 필요하다.
+					</section>
+					<section data-markdown>
+						### 속도
+
+						- 이터레이션동안 팀이 완료한 스토리의 포인트 총합
+						- 이터레이션동안 5포인트 스토리를 2개 끝냈다면 팀의 속도는 10
+						- 다음 이터레이션에도 10정도의 일을 완료할 수 있을것으로 예측할 수 있음
+					</section>
+					<section data-markdown>
+						### 전체 스토리의 규모가 100이라면?
+
+						- 속도가 10이므로 10번의 이터레이션동안 완료할 수 있을것으로 예측 가능함
+					</section>
+					<section data-markdown>
+						> "규모는 추정하지만 기간은 이끌어낸다."
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## 이상적 작업시간을 이용한 추정
+					</section>
+					<section data-markdown>
+						### 이상적 작업시간
+
+						어떤 방해도 받지 않고 순순하게 해당 작업을 해결하기 위한 시간
+					</section>
+					<section data-markdown>
+						### 이상적 작업시간 != 실제 경과 시간
+
+						회의, 긴급 장애 처리, 멀티태스킹 기타 등등
+					</section>
+					<section data-markdown>
+						### 이상적 작업시간을 이용한 추정시 전제조건
+
+						- 추정 대상 스토리 이외의 다른 작업에는 관여하지 않는다.
+						- 작업에 필요한 모든 것은 즉시 구할 수 있다.
+						- 아무도 개발자를 방해하지 않는다.
+					</section>
+					<!--<section data-markdown>-->
+						<!--### 추정치는 하나만-->
+
+						<!-- - 스토리당 하나의 합산된 추정치를 사용하는 것이 바람직하다.-->
+						<!-- - 기획, 디자인, 개발, 테스트 각각 별도의 추정치를 사용하지 말라는 이야기.-->
+						<!-- - 애자일 팀은 '하나의 팀'을 요구하는데, 이를 손상시키게 된다.-->
+						<!-- - 역할별로 속도 계산하고, 계획때에도 역할별로 속도를 고려해야한다.(= 복잡하다.)-->
+					<!--</section>-->
+				</section>
+
+				<section>
+					<section data-markdown>
+						## 스토리 포인트 vs 이상적 작업일
+					</section>
+					<section data-markdown>
+						> "시간이 얼마나 걸리는 지는 모르겠어, 그런데 스토리A는 스토리B보다 2배 더 큰 것 같아."
+
+						vs
+
+						> "이 작업은 방해만 없다면 5시간 정도 걸리겠네"
+
+					</section>
+
+					<section data-markdown>
+						### 스토리 포인트
+
+						Pros
+						- 팀원들로 하여금 기능간 경계를 뛰어넘게 한다.
+						- 시간이 지나도 유효성을 잃지 않는다.
+						- 규모 측정을 위한 순수 척도
+						- 더 빠르다.
+
+						Cons
+						- 익숙하지 않다.
+						- 기준이 없다.
+						- 하지만, 금방 극복 가능하다.
+
+						Note:
+						팀이 해야하는 일의크기, 팀으로 해결하기 위해 토론 활성화
+						이상적 작업일은 환경에 따라 다르고, 사람에 따라 다르고, 시간이 지남에 따라 달라진다.
+						스토리포인트는 나의 1점과 당신의 1점이 동일하다.
+					</section>
+
+					<section data-markdown>
+						### 이상적 작업일
+
+						Pros
+						- 팀 외부에 설명하기 좋다.
+						- 맨 처음 추정할 때에는 이상적 작업일 쪽이 더 쉽고 편하다.
+
+						Cons
+						- 이상적 작업일의 정의는 순수한 척도가 아니다.
+						- 사람에 따라, 환경에 따라, 시간경과에 따라 달라질 수 있다.
+					</section>
+					<section data-markdown>
+						- 첫번째 이터레이션
+						  - 이상적 작업일 추정치 '5'인 기능A 완료
+						  - 속도 : 5
+
+						- 두번째 이터레이션
+						  - 이상적 작업일 추정치 '1'인 기능A와 유사한 기능 5개 완료
+						  - 속도 : 5, 음?
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## 추정의 기술
+					</section>
+					<section data-markdown>
+						### 수확 체감의 법칙
+
+						어느 한계지점을 넘어서면 들이는 노력대비 결과물이 더 많아지지 않는다.
+					</section>
+					<section data-markdown data-background-image="images/clean.jpeg">
+						<script type="text/template">
+						```
+						- 30분의 노력으로 30% 깨끗함
+						- 1시간의 노력으로 80% 깨끗함
+						- 5시간의 노력으로 90% 깨끗함
+						```
+						<!-- .element: class="fragment" data-fragment-index="1" -->
+						</script>
+					</section>
+
+				</section>
+				<section>
+					<section data-markdown>
+						### 추정치의 공유
+
+						가능한 모든 팀원이 추정회의에 참석하라.
+					</section>
+
+					<section data-markdown>
+						### 추정치의 범위와 값
+
+						- 정해진 숫자를 사용
+						- 일반적으로 피보나치 수열 사용
+						- 가급적이면 한차수내에서 사용
+					</section>
+					<section data-markdown>
+						### 추정치 이끌어 내기
+
+						- 전문가 의견
+						- 비교
+						  - 삼각 측량
+						- 분해
+						  - 큰작업 보다는 작업 작업의 추정이 쉽다.
+						  - 데이터의 종류, 연산의 종류, 횡적 관심사, 우선순위
+					</section>
+				</section>
+				<section>
+					<section data-markdown data-background-image="images/pk.jpg">
+					</section>
+					<section data-markdown>
+						### 플래닝 포커
+
+						- 특정사람에 의존하지 않고 모든 팀원의 의견을 모아 추정하는 방식
+						- 광대역 델파이 기법
+				</section>
+					<section data-markdown>
+						### How to Planning Poker
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 1
+						PO가 추정할 스토리에 대해 설명합니다.
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 2
+						팀원들은 PO가 설명한 스토리에 대해 이야기를 나눕니다.
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 3
+						팀원들은 각자 생각하는 스토리포인트를 **동시에** 오픈합니다.
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 4
+						제일 적은,많은 포인트를 제시한 팀원은 그 이유를 설명합니다.
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 5
+						팀원들은 다시 스토리에 대해 이야기를 나눕니다.
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 6
+						다시 한번 스토리포인트를 동시에 오픈합니다.
+					</section>
+					<section data-markdown style="background-color: orange">
+						#### 7
+						모든 팀원의 포인트가 같아질때까지 반복합니다.
+					</section>
+					<!--<section data-markdown >-->
+						<!--### How to Planning Poker-->
+						<!--```-->
+						<!--1. PO가 추정할 스토리에 대해 설명합니다.-->
+						<!--2. 팀원들은 PO가 설명한 스토리에 대해 이야기를 나눕니다.-->
+						<!--3. 팀원들은 각자 자기가 생각하는 스토리포인트를 동시에 오픈합니다.-->
+						<!--4. 제일 적은 포인트, 제일 많은 포인트를 낸 팀원은 그 이유를 설명합니다.-->
+						<!--5. 팀원들은 다시 스토리에 대해 이야기를 나눕니다.-->
+						<!--6. 다시 한번 스토리포인트를 동시에 오픈합니다.-->
+						<!--7. 모든 팀원의 포인트가 같아질때까지 반복합니다.-->
+						<!--```-->
+					<!--</section>-->
+
+					<section data-markdown>
+						### 효과적인 이유
+
+						- 모든 팀원의 의견을 추정 과정에 한데 모으는 효과를 가진다.
+						- 포커 게임동안 활발한 대화가 이루어진다.
+						- 개인들이 내놓은 추정치들의 평균한 결과는 전문가들의 추정치 만큼이나 좋다. 라는 연구 결과도 있다.
+						- 재미있다.
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						## 추정 FAQ
+					</section>
+					<section data-markdown>
+						### 스토리 포인트 기준
+
+						- 팀의 스토리들중 가장 작은 크기의 스토리를 1로 잡는다.
+						- 대,중,소로 빠르게 분류한 후 대,중,소 별로 포인트 크기를 정하고 추정한다.
+					</section>
+					<section data-markdown>
+						### 스파이크
+
+						해당 스토리에 대해 팀원 누구도 전문적인 지식이 없을때에는, 빠르게 그 스토리에 대해서 검토해보는 과정을 갖는다.
+					</section>
+					<section data-markdown>
+						### 재추정
+
+						- 스토리의 상대적 규모가 변경된 경우에만 재추정한다.
+						- 구현을 하는데 생각보다 오래 걸린다고 해서 재추정을 하는것이 아니다.
+					</section>
+					<section data-markdown>
+						### 부분 완료된 스토리의 속도산정
+
+						- 완성된 스토리의 포인트만 속도에 포함
+						- 스토리를 분해할 수 있으면 완성하지 못한 부분에 대해서 스토리를 만들고 재추정
+					</section>
+					<section data-markdown>
+						### 첫 이터레이션에서 팀의 속도는
+
+						- 팀내 비슷했던 프로젝트의 스토리들을 추정해서 팀의 대략적인 속도를 파악한다.
+						- 일단 첫 이터레이션은 시작해본다.
+					</section>
+				</section>
+
+
+
+				<section>
+					<section data-markdown>
+						# 마무리
+					</section>
+					<section data-markdown>
+						전통적 계획법
+						```
+						final Plan plan = planning(SCHEDULE, resource, feature)
+						product = develop(plan)
+						```
+
+						애자일 계획법
+						```
+						while(true){
+							plan = planning(schedule, resource, feature, planType)
+							product = develop(plan)
+						}
+						```
+					</section>
+					<section data-markdown>
+						### 애자일 계획법이 통하는 이유
+						```
+						- 계획은 빈번히 수정된다.
+						- 규모 추정치와 기간 추정치는 따로 분리한다.
+						- 서로 다른 수준의 계획을 만든다.
+						- 작업이 아닌, 기능에 대한 계획을 만든다.
+						- 스토리의 크기를 작게 만들어 작업 흐름을 유지한다.
+						- 진행 중인 일들은 다음 이터레이션으로 넘기지 않는다.
+						- 개인이 아닌 팀을 추적한다.
+						- 불확실성을 인지하고 그에 대비한다.
+						```
+					</section>
+					<section data-markdown>
+						### 애자일 추정과 계획과정을 위한 12가지 지침
+						```
+						- 모든 팀원을 참여시켜라.
+						- 수준을 달리하여 여라 가지 계획을 만들라.
+						- 서로 다른 단위를 사용하여 규모 추정치와, 기간추정치를 분리하라.
+						- 기능이나 일정에 대한 불확실성을 반드시 포함하라.
+						- 계획을 자주 갱신하라.
+						- 진도를 추적하고, 그에 대해 의견을 나누라.
+						- 배움의 중요성을 인지하라.
+						- 적정 크기의 기능을 계획하라.
+						- 기능들의 우선순위를 매기라.
+						  - 가치, 리스크, 지식
+						- 사실에 근거해 추정치와 계획을 만들라.
+						  - 속도, 미완료 기능 진척
+						- 빈틈을 두라.
+						- 미리보기 계획 과정을 통해 팀 간의 활동을 조율하라.
+						```
+					</section>
+				</section>
+				<section>
+					<section data-markdown data-background-image="images/thanks.png">
+					</section>
+					<section data-markdown data-background-image="images/qna.png">
+					</section>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

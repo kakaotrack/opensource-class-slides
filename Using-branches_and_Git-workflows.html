@@ -1,0 +1,685 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Agile Estimating & Planning</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section data-markdown data-background-image="images/git/hero.svg" >
+						# Git
+
+						-
+
+						### Branch & Workflow
+					</section>
+					<section data-markdown>
+						![](images/benedict.jpg)
+
+						- 플랫폼기술팀 > 기술품질파트 > 개발플랫폼셀
+						- Benedict, 베네딕트, 베니, 이호정
+					</section>
+					<section data-markdown>
+						## Objectives
+						- Learn git branch & merge
+						- Learn git workflow
+					</section>
+					<section data-markdown data-background-image="images/git/start.jpg" >
+					</section>
+				</section>
+
+
+				<!--using branches-->
+				<section>
+					<section data-markdown>
+						# ![](images/git/bicon.png) Using branches
+					</section>
+					<section data-background-iframe="http://alldic.daum.net/index.do?dic=eng">
+					</section>
+				</section>
+
+				<!-- git branch -->
+				<section>
+					<section data-markdown >
+						## git branch
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						A **branch**<!-- .element: class="fragment highlight-red" data-fragment-index="1" --> represents an **independent**<!-- .element: class="fragment highlight-red" data-fragment-index="2" --> line of development.
+						</script>
+					</section>
+					<section data-markdown >
+						![](images/git/add.svg)
+						### commit / commit history
+					</section>
+					<section data-markdown>
+						![](images/git/branch.svg)
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+						## why branching?
+
+						- 불안정한 코드가 메인 코드 베이스에 커밋되는것을 방지 <!-- .element: class="fragment" data-fragment-index="1" -->
+						- 다른 사람의 작업에 영향받지 않고 나의 작업을 진행 <!-- .element: class="fragment" data-fragment-index="2" -->
+						- 메인 코드 베이스에 머지하지 전에 커밋 히스토리를 정리 <!-- .element: class="fragment" data-fragment-index="3" -->
+						</script>
+					</section>
+					<section data-markdown>
+						## Usage
+
+						```
+						$ git branch // 전체 브랜치 리스트 조회
+						$ git branch 브랜치명 // 새로운 브랜치 생성
+						$ git branch -d 브랜치명 // 브랜치 삭제
+						$ git branch -m 브랜치명 // 브랜치명 수정
+						$ git branch -h // 도움말
+						```
+					</section>
+					<section data-markdown>
+						## branches
+
+						- **master**
+						- develop
+						- feature/feature-xxx-feature
+						- hotfix/v1.0.0-xxx-bugfix
+						- release/v1.0.0
+					</section>
+				</section>
+				<section>
+					<section data-markdown >
+						## git branch
+						# Demo
+					</section>
+					<section data-markdown >
+						### 1. create a new repository
+						```
+						$ mkdir newrepo
+						$ cd newrepo
+						$ git init
+						```
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+						### 2. initial commit
+						```
+						$ touch README.md
+						$ git add README.md
+						$ git commit -m 'add README.md'
+						```
+						![](https://wac-cdn-a.atlassian.com/dam/jcr:80aa77d2-c28f-415e-ab10-e3612456a9c1/02.svg?cdnVersion=em)<!-- .element: class="fragment" data-fragment-index="1" -->
+						</script>
+					</section>
+
+					<section data-markdown >
+						<script type="text/template">
+						### 3. create a new branch
+						```
+						$ git branch crazy-experiment
+						```
+						![](https://wac-cdn-a.atlassian.com/dam/jcr:b0e2f237-9337-4385-be22-43f623e133d0/03.svg?cdnVersion=em)<!-- .element: class="fragment" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown >
+						### 4. list all of the branches
+						```
+						$ git branch
+						  crazy-experiment
+						* master
+						```
+					</section>
+					<section data-markdown >
+						### 5. delete a branch
+						```
+						$ git branch -d crazy-experiment
+						Deleted branch crazy-experiment (was xxxxxxx).
+						$ git branch
+						* master
+						```
+					</section>
+				</section>
+
+				<!-- git checkout -->
+				<section>
+					<section data-markdown >
+						## git checkout
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+						The `git checkout` command lets you **navigate between the branches**<!-- .element: class="fragment highlight-red" data-fragment-index="1" --> created by `git branch`
+						</script>
+					</section>
+					<section data-markdown data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:495d8aff-c88a-4f71-83a8-1feded4415d6/04.svg?cdnVersion=em" data-background-size="40%">
+					</section>
+					<section data-markdown>
+						## Usage
+
+						```
+						$ git checkout [existing-branch] // 지정한 브랜치로 작업디렉토리 변경
+						$ git checkout -b [new-branch] // 새로운 브랜치를 생성하고 생성된 브랜치로 작업디렉토리 변경
+						```
+					</section>
+				</section>
+				<section>
+					<section data-markdown >
+						## git checkout
+						# Demo
+					</section>
+					<section data-markdown >
+						### 1. create a new branch
+						```
+						$ git branch new-feature
+						```
+					</section>
+					<section data-markdown >
+						### 2. checkout new-feature
+						```
+						$ git checkout new-feature
+						Switched to branch 'new-feature'
+						$ git branch
+						  master
+						* new-feature
+						```
+					</section>
+					<section data-markdown >
+						### 3. edit some files
+						```
+						$ echo 'readme' >> README.md
+						$ git add README.md
+						$ git commit -m 'modify readme.md'
+						```
+					</section>
+					<section data-markdown >
+						### 4. checking out master
+						```
+						$ git checkout master
+						Switched to branch 'master'
+						```
+					</section>
+				</section>
+
+				<!-- git merge -->
+				<section>
+					<section data-markdown >
+						## git merge
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+							Merging is Git's way of putting a forked history **back together again**<!-- .element: class="fragment highlight-red" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:0ea8cab6-3029-4cbe-aed4-d314a304f7d8/07.svg?cdnVersion=em" data-background-size="40%">
+						<script type="text/template">
+						#### fast-forward merge<!-- .element: class="fragment" style="color:red" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:4cd777cc-24d1-4502-b8a9-8646b15c2d6b/08.svg?cdnVersion=em" data-background-size="40%">
+						<script type="text/template">
+						#### 3-way merge<!-- .element: class="fragment" style="color:red" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown>
+						## Usage
+
+						```
+						$ git merge 머지할브랜치명 // 현재 브랜치로 머지할브랜치를 머지한다.
+						$ git merge --no-ff  머지할브랜치명 // fast-forward가 가능한 상황이라도, 머지커밋을 만든다.
+						```
+					</section>
+				</section>
+				<section>
+					<section data-markdown >
+						## git merge
+						# Demo
+					</section>
+					<section data-markdown >
+						## fast-forward merge
+					</section>
+					<section data-markdown >
+						### 1. Start a new-feature
+						```
+						$ git checkout -b new-feature
+						```
+					</section>
+					<section data-markdown >
+						### 2. Edit some files
+						```
+						$ echo 'readme1111' >> README.md
+						$ git add README.md
+						$ git commit -m 'modify readme.md 1111'
+						```
+					</section>
+					<section data-markdown >
+						### 3. Edit some files
+						```
+						$ echo 'readme2222' >> README.md
+						$ git add README.md
+						$ git commit -m 'modify readme.md 2222'
+						```
+					</section>
+					<section data-markdown >
+						### 4. Merge in the new-feature branch
+						```
+						$ git checkout master
+						$ git merge new-feature
+						```
+					</section>
+
+					<section data-markdown >
+						## 3-way merge
+					</section>
+					<section data-markdown >
+						### 1. Start a new-feature
+						```
+						$ git checkout -b new-feature
+						```
+					</section>
+					<section data-markdown >
+						### 2. Edit some files
+						```
+						$ echo 'readme3333' >> README.md
+						$ git add README.md
+						$ git commit -m 'modify readme.md 3333'
+						```
+					</section>
+					<section data-markdown >
+						### 3. Edit some files
+						```
+						$ echo 'readme4444' >> README.md
+						$ git add README.md
+						$ git commit -m 'modify readme.md 4444'
+						```
+					</section>
+					<section data-markdown >
+						### 4. Develop the master branch
+						```
+						$ git checkout master
+						$ touch WRITEME.md
+						$ git add WRITEME.md
+						$ git commit -m 'add writeme.md'
+						```
+					</section>
+					<section data-markdown >
+						### 5. Merge in the new-feature branch
+						```
+						$ git merge new-feature
+						```
+					</section>
+				</section>
+
+				<!-- git rebase -->
+				<section>
+					<section data-markdown >
+						## git rebase
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+						Rebasing is the process of **moving a branch to a new base commit.**<!-- .element: class="fragment highlight-red" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown>
+						## Usage
+
+						```
+						$ git rebase 베이스브랜치 // 현재 브랜치를 베이스브랜치로 리베이스 한다.
+						```
+					</section>
+				</section>
+				<section>
+					<section data-markdown >
+						## git rebase
+						# Demo
+					</section>
+					<section data-markdown >
+						### 1. Start a rebase-demo
+						```
+						$ git checkout -b rebase-demo
+						```
+					</section>
+					<section data-markdown >
+						### 2. Edit README.md files
+						```
+						$ echo 'rebase' > REBASE.md
+						$ git add REBASE.md
+						$ git commit -m 'modify readme.md'
+						```
+					</section>
+					<section data-markdown >
+						### 3. Checking out master
+						```
+						$ git checkout master
+						```
+					</section>
+					<section data-markdown >
+						### 4. Edit README.md file
+						```
+						$ echo 'rebase demo' > README.md
+						$ git add README.md
+						$ git commit -m 'edit readme.md'
+						```
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+							### 5. Checking out rebase-demo
+							```
+							$ git checkout rebase-demo
+							```
+							![](https://wac-cdn-a.atlassian.com/dam/jcr:d3b2abde-d06a-47b6-8955-5f3ef34e0237/03.svg?cdnVersion=em)<!-- .element: class="fragment" data-fragment-index="1" -->
+						</script>
+					</section>
+					<section data-markdown >
+						### 6. Rebasing onto master
+						```
+						$ git rebase master
+						First, rewinding head to replay your work on top of it...
+						Applying: .....
+						```
+					</section>
+					<section data-markdown >
+						### 7. Merge in the new-feature branch
+						```
+						$ git checkout master
+						$ git merge new-feature
+						```
+					</section>
+					<section data-markdown data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:38918523-9890-4728-badd-793c5ee5b3b8/04.svg?cdnVersion=em" data-background-size="40%">
+					</section>
+				</section>
+
+				<!-- merge conflict -->
+				<section>
+					<section data-markdown >
+						## merge conflict
+					</section>
+					<section data-markdown >
+						<script type="text/template">
+							If the two branches you're trying to merge **both changed the same part of the same file**<!-- .element: class="fragment highlight-red" data-fragment-index="1" -->, Git won't be able to figure out which version to use.
+						</script>
+					</section>
+					<section data-markdown data-background-image="images/git/branch.svg" data-background-size="100%">
+						<script type="text/template">
+							## merge conflict<!-- .element: class="" style="color:red" data-fragment-index="1" -->
+
+							```
+							README.md 파일의 첫번째 라인을 두 브랜치에서 동시에 다르게 수정
+							- base : hello
+							- master : hello hojeong
+							- little feature : hello benedict
+							```
+							<!-- .element: class="fragment highlight" data-fragment-index="1" -->
+
+						</script>
+					</section>
+				</section>
+				<section>
+					<section data-markdown >
+						## resolving conflicts
+						# Demo
+					</section>
+					<section data-markdown >
+						### 1. Start a new-feature
+						```
+						$ git checkout -b new-feature
+						```
+					</section>
+					<section data-markdown >
+						### 2. Edit README.md file
+						```
+						$ echo 'hello benedict' > README.md
+						$ git add README.md
+						$ git commit -m 'edit readme.md'
+						```
+					</section>
+					<section data-markdown >
+						### 3. Checking out master
+						```
+						$ git checkout master
+						```
+					</section>
+					<section data-markdown >
+						### 4. Edit README.md file
+						```
+						$ echo 'hello hojeong' > README.md
+						$ git add README.md
+						$ git commit -m 'edit readme.md'
+						```
+					</section>
+					<section data-markdown >
+						### 5. Merge in the new-feature branch
+						```
+						$ git merge new-feature
+						Auto-merging README.md
+						CONFLICT (content): Merge conflict in README.md
+						Automatic merge failed; fix conflicts and then commit the result.
+						```
+					</section>
+					<section data-markdown >
+						### 6. Check status
+						```
+						$ git status
+						On branch master
+						You have unmerged paths.
+						(fix conflicts and run "git commit")
+
+						Unmerged paths:
+						(use "git add file..." to mark resolution)
+
+						both modified:   README.md
+
+						no changes added to commit (use "git add" and/or "git commit -a")
+						```
+					</section>
+					<section data-markdown >
+						### 7. Edit README.md
+						```
+						<<<<<<< HEAD
+						master
+						=======
+						new-branch
+						>>>>>>> new-branch
+						```
+					</section>
+					<section data-markdown >
+						### 8. Edit README.md
+						```
+						<<<<<<< HEAD #delete
+						master
+						======= #delete
+						new-branch #delete
+						>>>>>>> new-branch #delete
+						```
+						```
+						master
+						```
+					</section>
+					<section data-markdown >
+						### 9. Resolving and commit
+						```
+						$ git add README.md
+						$ git commit -m 'resolve merge conflict'
+						```
+					</section>
+				</section>
+
+
+				<!-- git workflow-->
+				<section>
+					<section data-markdown>
+						# ![](images/git/bicon.png) Git workflows
+					</section>
+					<section data-markdown>
+						## workflow?
+						- branching model(a narrow sense)
+						- merging
+						- branch naming
+						- etc...
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						## Git workflows **are guidelines.**<!-- .element: class="fragment" style="color:red" data-fragment-index="6" -->
+						- Centralized workflow<!-- .element: class="fragment" data-fragment-index="1" -->
+						- Feature branch workflow<!-- .element: class="fragment" data-fragment-index="2" -->
+						  - [Github flow](https://guides.github.com/introduction/flow/)<!-- .element: class="fragment" data-fragment-index="2" -->
+						- Gitflow workflow<!-- .element: class="fragment" data-fragment-index="3" -->
+						- Forking workflow<!-- .element: class="fragment" data-fragment-index="4" -->
+						- Etc...<!-- .element: class="fragment" data-fragment-index="5" -->
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## [Gitflow workflow](http://nvie.com/posts/a-successful-git-branching-model/)
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+						The Gitflow Workflow defines a strict branching model designed **around the project release.**<!-- .element: class="fragment highlight-red" data-fragment-index="5" -->
+						</script>
+					</section>
+					<section data-markdown data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:e3bd4199-27ac-4bac-a5d2-3ff0fdb112d3/01.svg?cdnVersion=em" data-background-size="100%">
+						### 5 branch types
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						## Main branches
+						master / develop
+					</section>
+					<section data-markdown>
+						### master branch
+						always reflects a production-ready state.
+					</section>
+					<section data-markdown>
+						### develop branch
+						always reflects a state with the latest delivered development changes for the next release.
+					</section>
+					<section data-markdown data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:2e2315b0-d79a-403f-a981-4cb94599df1f/02.svg?cdnVersion=em" data-background-size="90%">
+					</section>
+				</section>
+				<section>
+					<section data-markdown>
+						## Supporting branches
+						feature / release / hotfix
+					</section>
+					<section data-markdown>
+						### feature branches
+						- for each new features
+
+						```
+						- branch off: develop
+						- merge into: develop
+						- naming convention: feature/* or feature-*
+						```
+					</section>
+					<section data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:9f149cef-f784-43de-8207-3e7968789a1f/03.svg?cdnVersion=em" data-background-size="80%">
+					</section>
+
+					<section data-markdown>
+						### release branches
+						- preparation of a new production release
+
+						```
+						- branch off: develop
+						- merge into: develop and master
+						- naming convention: release/* or release-*
+						```
+					</section>
+					<section data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:3555a856-675e-453a-b49d-ba60667809e1/04.svg?cdnVersion=em" data-background-size="80%">
+					</section>
+
+					<section data-markdown>
+						### hotfix branches
+						- prepare for a new production release, **albeit unplanned**
+						- quickly patch production releases
+
+						```
+						- branch off: master
+						- merge into: develop and master
+						- naming convention: hotfix/* or hotfix-*
+						```
+					</section>
+					<section data-background-image="https://wac-cdn-a.atlassian.com/dam/jcr:21cf772d-2ba5-4686-8259-fcd6fd2311df/05.svg?cdnVersion=em" data-background-size="70%">
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						# summary
+					</section>
+					<section data-markdown>
+						## using branshes
+						- git branch
+						- git checkout
+						- git merge
+						  - fast-forward
+						  - 3-way
+						- git rebase
+						- merge conflict
+					</section>
+					<section data-markdown>
+						## git workflows
+						- centrialized
+						- feature branch
+						- gitflow
+						- forking
+					</section>
+					<section data-markdown>
+						## gitflow workflow
+						branch|desc
+						------------ | -------------
+						master|production
+						develop|latest ang greatest
+						feature/\*|each feature develop
+						release/\*|prepare release
+						hotfix/\*|adhoc release
+					</section>
+				</section>
+
+				<section data-markdown>
+					# End.
+				</section>
+				<section data-markdown>
+					## using branches
+					# [실습](#/3)
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+				parallaxBackgroundImage: '',
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
